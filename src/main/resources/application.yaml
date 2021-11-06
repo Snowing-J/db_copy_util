@@ -59,4 +59,4 @@ logging:
 DbCopyVerifyCfg:
   read-source-name: online_db
   write-source-name: beta_db
-  managers: [root]
+  managers: root,user,admin

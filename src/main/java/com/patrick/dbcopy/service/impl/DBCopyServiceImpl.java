@@ -2,7 +2,6 @@ package com.patrick.dbcopy.service.impl;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.patrick.dbcopy.mapper.AbstractDBCopyMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
-@Slf4j
 @Service
 public class DBCopyServiceImpl {
 
@@ -31,8 +29,7 @@ public class DBCopyServiceImpl {
             5,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(100),
-            new ThreadFactoryBuilder().setNameFormat("dbCopyJob-thread-%d").build(),
-            (r, executor) -> log.error("dbCopyJob process Throw Exception!"));
+            new ThreadFactoryBuilder().setNameFormat("dbCopyJob-thread-%d").build());
             // 此处删除了日志
 
     public String copyAllTables(List<String> tableList) throws Exception {
@@ -45,7 +42,7 @@ public class DBCopyServiceImpl {
                     affectedLine = copyTable(tableName);
                     System.out.println("---当前线程： " + executor);
                 } catch (Exception e) {
-                    log.error("abstractCopy:{}Error",tableName,e);
+//                    log.error("abstractCopy:{}Error",tableName,e);
                 } finally {
                     affectedLines.put(tableName,affectedLine);
                     countDownLatch.countDown();
