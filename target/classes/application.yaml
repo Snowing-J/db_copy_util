@@ -1,0 +1,62 @@
+#项目启动端口
+server:
+  port: 8080
+#数据源配置
+spring:
+  datasource:
+    dynamic:
+      primary: mysql_master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
+      druid:
+        initial-size: 20
+        min-idle: 10
+        max-active: 50
+        max-wait: 60000
+        max-open-prepared-statements: 20
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        validation-query: SELECT 'x'
+        validation-query-timeout: 30000
+        test-on-borrow: false
+        test-on-return: false
+        test-while-idle: true
+        pool-prepared-statements: false
+        max-pool-prepared-statement-per-connection-size: -1
+      datasource:
+        mysql_master:
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          username: root
+          password: 123456Mysql
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        mysql_stat:
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          username: root
+          password: 123456Mysql
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        mysql_readsource:
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          username: root
+          password: 123456Mysql
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        mysql_writesource:
+          url: jdbc:mysql://localhost:3306/beta_db?serverTimezone=UTC&useSSL=false
+          username: root
+          password: 123456Mysql
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # profiles: 配置环境，生产or开发or测试
+  # active:
+#配置Mybatis
+mybatis:
+  mapper-locations: classpath:com/patrick/dbcopy/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true  #驼峰标识
+logging:
+  level:
+    com:
+      patrick:
+        mapper: debug
+DbCopyVerifyCfg:
+  read-source-name: online_db
+  write-source-name: beta_db
+  managers: [root]
