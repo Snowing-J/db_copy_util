@@ -5,8 +5,8 @@
     <select id="selectDatabase" resultType="java.lang.String">
         select DATABASE()
     </select>
-    <select id="selectAllTablesName" resultType="java.util.List">
-        select DISTINCT table_name from information_schema.COLUMNS where Table_SCHEMA = (select DATABASE());
+    <select id="selectAllTablesName" resultType="java.lang.String">
+        select DISTINCT TABLE_NAME from information_schema.COLUMNS where TABLE_SCHEMA = (select DATABASE())
     </select>
     <select id="selectDataByTableName" resultType="java.util.Map" parameterType="java.lang.String">
         select * from ${tableName}

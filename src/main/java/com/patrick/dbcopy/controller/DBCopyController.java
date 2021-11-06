@@ -36,15 +36,20 @@ public class DBCopyController {
      * 复制学生表（Students）
      * @throws Exception
      */
-    @Transactional(rollbackFor = Exception.class)
-    @RequestMapping("/copyStudents")
-    public void copyStudents() throws Exception{
-        System.out.println("开始读取数据---");
-        List<Students> students = onLineDBServiceImpl.readStudents();
-        if (!students.isEmpty()){
-            betaDBServiceImpl.writeStudents(students);
-        }
-    }
+//    @Transactional(rollbackFor = Exception.class)
+//    @RequestMapping("/copyStudents")
+//    public void copyStudents() {
+//        System.out.println("开始读取数据---");
+//        List<Students> students = null;
+//        try {
+//            students = onLineDBServiceImpl.readStudents();
+//            betaDBServiceImpl.writeStudents(students);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if (!students.isEmpty()){
+//        }
+//    }
 
     /**
      * 暴力复制所有的表（AllTables）

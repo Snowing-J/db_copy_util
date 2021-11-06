@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/db_copy_until.iml" filepath="$PROJECT_DIR$/db_copy_until.iml" />
+      <module fileurl="file://$PROJECT_DIR$/db_copy_util.iml" filepath="$PROJECT_DIR$/db_copy_util.iml" />
     </modules>
   </component>
 </project>

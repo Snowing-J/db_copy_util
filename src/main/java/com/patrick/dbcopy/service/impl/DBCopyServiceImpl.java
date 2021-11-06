@@ -2,6 +2,7 @@ package com.patrick.dbcopy.service.impl;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.patrick.dbcopy.mapper.AbstractDBCopyMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
+@Slf4j
 @Service
 public class DBCopyServiceImpl {
 
@@ -29,10 +31,11 @@ public class DBCopyServiceImpl {
             5,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(100),
-            new ThreadFactoryBuilder().setNameFormat("dbCopyJob-thread-%d").build());
+            new ThreadFactoryBuilder().setNameFormat("dbCopyJob-thread-%d").build(),
+            (r, executor) -> log.error("dbCopyJob process Throw Exception!"));
             // 此处删除了日志
 
-    public String copyAllTables(List<String> tableList) throws InterruptedException {
+    public String copyAllTables(List<String> tableList) throws Exception {
         CountDownLatch countDownLatch = new CountDownLatch(tableList.size());
         Map<String,Integer> affectedLines= new ConcurrentHashMap<>();
         for (String tableName:tableList) {
