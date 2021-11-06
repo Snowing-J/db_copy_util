@@ -11,4 +11,18 @@
     <select id="selectDataByTableName" resultType="java.util.Map" parameterType="java.lang.String">
         select * from ${tableName}
     </select>
+    <insert id="insertByMap">
+        insert into ${tableName}
+        (
+        <foreach collection="map" item="value1" index="key1" separator=",">
+            `${key1}`
+        </foreach>
+        )
+        values
+        (
+        <foreach collection="map" item="value2" index="key2" separator=",">
+            #{value2}
+        </foreach>
+        )
+    </insert>
 </mapper>

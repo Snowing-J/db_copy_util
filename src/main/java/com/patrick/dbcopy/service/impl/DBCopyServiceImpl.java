@@ -43,8 +43,9 @@ public class DBCopyServiceImpl {
                 Integer affectedLine = -1;
                 try{
                     affectedLine = copyTable(tableName);
+                    System.out.println("---当前线程： " + executor);
                 } catch (Exception e) {
-//                    log.error("abstractCopy:{}Error",tableName,e);
+                    log.error("abstractCopy:{}Error",tableName,e);
                 } finally {
                     affectedLines.put(tableName,affectedLine);
                     countDownLatch.countDown();
@@ -55,11 +56,11 @@ public class DBCopyServiceImpl {
         return "ok";
     }
 
-    private Integer copyTable(String tableName) {
+    private Integer copyTable(String tableName) throws Exception{
         List<Map<String, Object>> tableData = onLineDBService.readDataByTableName(tableName);
         System.out.println("---" + tableName + "中的数据如下：");
         System.out.println(tableData);
-//        Integer result = betaDBService.writeDataByTableName(tableName, tableData);
-        return 1;
+        Integer result = betaDBService.writeDataByTableName(tableName, tableData);
+        return result;
     }
 }

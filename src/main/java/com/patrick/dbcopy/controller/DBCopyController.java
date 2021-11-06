@@ -63,6 +63,7 @@ public class DBCopyController {
 //        1.获取所有的表格
 //        2.根据表名称暴力同步
         List<String> tablesList = abstractDBCopyMapper.selectAllTablesName();
+
         System.out.println("---需要同步的表格如下：");
         System.out.println(tablesList);
         String result = dbCopyServiceImpl.copyAllTables(tablesList);
