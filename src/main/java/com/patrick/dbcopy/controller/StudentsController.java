@@ -42,7 +42,7 @@ public class StudentsController {
 
     @RequestMapping("/insertManyStudents")
     public void insertManyStudents(){
-        System.out.println("插入100条学生信息");
+        System.out.println("插入10000条学生信息");
         for(int i = 1; i <= 10000; i++ ) {
             Students student = new Students();
             student.setStudentId(20200000 + i);

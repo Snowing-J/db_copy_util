@@ -51,7 +51,7 @@ public class OnLineDBServiceImpl {
     @DS("mysql_readsource")
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Map<String, Object>> readDataByTableName(String tableName) {
-        System.out.println("--开始读取 tableName：%s 中的数据" + tableName);
+        System.out.println("--开始读取 tableName：" + tableName + " 中的数据");
         return abstractDBCopyMapper.selectDataByTableName(tableName);
     }
 }

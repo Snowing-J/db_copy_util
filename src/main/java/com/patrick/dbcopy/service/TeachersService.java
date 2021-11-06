@@ -1,5 +1,6 @@
 package com.patrick.dbcopy.service;
 
+import com.patrick.dbcopy.bean.Students;
 import com.patrick.dbcopy.bean.Teachers;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-11-03
  */
 public interface TeachersService extends IService<Teachers> {
-
+    String insert(Teachers teacher);
 }

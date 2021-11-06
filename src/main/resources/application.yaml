@@ -24,24 +24,32 @@ spring:
         max-pool-prepared-statement-per-connection-size: -1
       datasource:
         mysql_master:
-          url: jdbc:mysql://localhost:3306/online_db?allowPublicKeyRetrieval=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-          password: 123456Mysql
+#          password: 123456Mysql
+          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_stat:
-          url: jdbc:mysql://localhost:3306/online_db?allowPublicKeyRetrieval=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-          password: 123456Mysql
+#          password: 123456Mysql
+          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_readsource:
-          url: jdbc:mysql://localhost:3306/online_db?allowPublicKeyRetrieval=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-          password: 123456Mysql
+#          password: 123456Mysql
+          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_writesource:
-          url: jdbc:mysql://localhost:3306/beta_db?allowPublicKeyRetrieval=true&useSSL=false
+#          url: jdbc:mysql://localhost:3306/beta_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3307/beta_db?serverTimezone=UTC&useSSL=false
           username: root
-          password: 123456Mysql
+#          password: 123456Mysql
+          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
 
   # profiles: 配置环境，生产or开发or测试
