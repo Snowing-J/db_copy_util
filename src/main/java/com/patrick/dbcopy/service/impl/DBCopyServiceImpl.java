@@ -21,6 +21,7 @@ public class DBCopyServiceImpl {
     @Autowired
     BetaDBServiceImpl betaDBService;
 
+    // 获取当前cpu的最大逻辑线程数
     private static final int THREADS = Runtime.getRuntime().availableProcessors() + 1;
 
     private ExecutorService executor = new ThreadPoolExecutor(
