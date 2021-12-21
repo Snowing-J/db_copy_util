@@ -2,7 +2,9 @@ package com.patrick.dbcopy.service.impl;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.patrick.dbcopy.mapper.AbstractDBCopyMapper;
+import com.patrick.dbcopy.service.ReadDBService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+@Primary
 @Service
-public class OnLineDBServiceImpl {
+public class ReadDBServiceImpl implements ReadDBService {
 
     @Autowired
     AbstractDBCopyMapper abstractDBCopyMapper;

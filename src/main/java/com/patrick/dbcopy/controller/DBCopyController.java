@@ -1,9 +1,7 @@
 package com.patrick.dbcopy.controller;
 
 import com.patrick.dbcopy.mapper.AbstractDBCopyMapper;
-import com.patrick.dbcopy.service.impl.BetaDBServiceImpl;
-import com.patrick.dbcopy.service.impl.DBCopyServiceImpl;
-import com.patrick.dbcopy.service.impl.OnLineDBServiceImpl;
+import com.patrick.dbcopy.service.DBCopyService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,16 +16,10 @@ import java.util.List;
 public class DBCopyController {
 
     @Autowired
-    OnLineDBServiceImpl onLineDBServiceImpl;
-
-    @Autowired
-    BetaDBServiceImpl betaDBServiceImpl;
-
-    @Autowired
     AbstractDBCopyMapper abstractDBCopyMapper;
 
     @Autowired
-    DBCopyServiceImpl dbCopyServiceImpl;
+    DBCopyService dbCopyService;
 
     // 从配置文件注入管理员账户名称
     @Value("${DbCopyVerifyCfg.managers}")
@@ -53,7 +45,7 @@ public class DBCopyController {
         System.out.println("---需要同步的表格如下：");
         System.out.println(tablesList);
         // 同步数据逻辑
-        String result = dbCopyServiceImpl.copyAllTables(tablesList);
+        String result = dbCopyService.copyAllTables(tablesList);
         System.out.println(result);
         return result;
     }
@@ -78,7 +70,7 @@ public class DBCopyController {
 //        System.out.println("---需要同步的表格如下：");
         System.out.println(tableName);
         // 同步数据逻辑
-        Integer r = dbCopyServiceImpl.copyTable(tableName);
+        Integer r = dbCopyService.copyTable(tableName);
         String result = r == 1 ? "ok" : "erro";
         System.out.println(result);
         return result;
