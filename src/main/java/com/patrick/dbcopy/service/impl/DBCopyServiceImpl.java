@@ -54,7 +54,7 @@ public class DBCopyServiceImpl {
         return "ok";
     }
 
-    private Integer copyTable(String tableName) throws Exception{
+    public Integer copyTable(String tableName) throws Exception{
         List<Map<String, Object>> tableData = onLineDBService.readDataByTableName(tableName);
         System.out.println("---" + tableName + "中的数据如下：");
         System.out.println(tableData);

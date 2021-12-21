@@ -34,25 +34,6 @@ public class DBCopyController {
     private List<String> dbMangerList;
 
     /**
-     * 复制学生表（Students）
-     * @throws Exception
-     */
-//    @Transactional(rollbackFor = Exception.class)
-//    @RequestMapping("/copyStudents")
-//    public void copyStudents() {
-//        System.out.println("开始读取数据---");
-//        List<Students> students = null;
-//        try {
-//            students = onLineDBServiceImpl.readStudents();
-//            betaDBServiceImpl.writeStudents(students);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        if (!students.isEmpty()){
-//        }
-//    }
-
-    /**
      * 同步所有的表（AllTables）
      */
     @Transactional(rollbackFor = Exception.class)
@@ -73,6 +54,32 @@ public class DBCopyController {
         System.out.println(tablesList);
         // 同步数据逻辑
         String result = dbCopyServiceImpl.copyAllTables(tablesList);
+        System.out.println(result);
+        return result;
+    }
+
+    /**
+     * 同步一个指定的表（tableName）
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @RequestMapping("/copyTable")
+    public String copyTable(@Param("user") String user, @Param("tableName") String tableName) throws Exception{
+        // 判断人员权限
+        if (!dbMangerList.contains(user)){
+            String result = user + ": 您无权操作数据库";
+            System.out.println(result);
+            return result;
+        }
+        // 判断是否有正在操作的记录
+        //使用redis缓存管理
+        // 开始同步数据
+        // 获取数据库中的所有需要同步的表名
+//        List<String> tablesList = abstractDBCopyMapper.selectAllTablesName();
+//        System.out.println("---需要同步的表格如下：");
+        System.out.println(tableName);
+        // 同步数据逻辑
+        Integer r = dbCopyServiceImpl.copyTable(tableName);
+        String result = r == 1 ? "ok" : "erro";
         System.out.println(result);
         return result;
     }
