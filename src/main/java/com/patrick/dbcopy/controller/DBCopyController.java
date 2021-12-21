@@ -1,11 +1,9 @@
 package com.patrick.dbcopy.controller;
 
-import com.patrick.dbcopy.bean.Students;
 import com.patrick.dbcopy.mapper.AbstractDBCopyMapper;
 import com.patrick.dbcopy.service.impl.BetaDBServiceImpl;
 import com.patrick.dbcopy.service.impl.DBCopyServiceImpl;
 import com.patrick.dbcopy.service.impl.OnLineDBServiceImpl;
-import com.patrick.dbcopy.service.impl.StudentsServiceImpl;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,9 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/dbCopy")
 public class DBCopyController {
-
-    @Autowired
-    StudentsServiceImpl studentsServiceImpl;
 
     @Autowired
     OnLineDBServiceImpl onLineDBServiceImpl;
@@ -42,23 +37,23 @@ public class DBCopyController {
      * 复制学生表（Students）
      * @throws Exception
      */
-    @Transactional(rollbackFor = Exception.class)
-    @RequestMapping("/copyStudents")
-    public void copyStudents() {
-        System.out.println("开始读取数据---");
-        List<Students> students = null;
-        try {
-            students = onLineDBServiceImpl.readStudents();
-            betaDBServiceImpl.writeStudents(students);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (!students.isEmpty()){
-        }
-    }
+//    @Transactional(rollbackFor = Exception.class)
+//    @RequestMapping("/copyStudents")
+//    public void copyStudents() {
+//        System.out.println("开始读取数据---");
+//        List<Students> students = null;
+//        try {
+//            students = onLineDBServiceImpl.readStudents();
+//            betaDBServiceImpl.writeStudents(students);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if (!students.isEmpty()){
+//        }
+//    }
 
     /**
-     * 暴力同步所有的表（AllTables）
+     * 同步所有的表（AllTables）
      */
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping("/copyAllTables")
@@ -70,7 +65,7 @@ public class DBCopyController {
             return result;
         }
         // 判断是否有正在操作的记录
-
+            //使用redis缓存管理
         // 开始同步数据
         // 获取数据库中的所有需要同步的表名
         List<String> tablesList = abstractDBCopyMapper.selectAllTablesName();

@@ -57,6 +57,6 @@ logging:
       patrick:
         mapper: debug
 DbCopyVerifyCfg:
-  read-source-name: online_db
-  write-source-name: beta_db
-  managers: root,user,admin
+  read-source-name: online_db #生产环境DB
+  write-source-name: beta_db #预发环境DB
+  managers: root,user,admin #设置可以使用此工具的角色
