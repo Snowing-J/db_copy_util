@@ -54,7 +54,7 @@ public class DBCopyServiceImpl implements DBCopyService {
                 Integer affectedLine = -1;
                 try{
                     affectedLine = copyTable(tableName);
-                    System.out.println("---当前线程： " + executor);
+                    System.out.println("---当前线程： " + Thread.currentThread().getName());
                 } catch (Exception e) {
 //                    log.error("abstractCopy:{}Error",tableName,e);
                 } finally {
@@ -67,12 +67,22 @@ public class DBCopyServiceImpl implements DBCopyService {
         return "ok";
     }
 
+<<<<<<< HEAD
     @Override
     public Integer copyTable(String tableName) throws Exception{
         List<Map<String, Object>> tableData = readDBService.readDataByTableName(tableName);
         System.out.println("---" + tableName + "中的数据如下：");
         System.out.println(tableData);
         Integer result = writeDBService.writeDataByTableName(tableName, tableData);
+=======
+    private Integer copyTable(String tableName) throws Exception{
+        List<Map<String, Object>> tableData = onLineDBService.readDataByTableName(tableName);
+//        System.out.println("---当前线程： " + Thread.currentThread().getName());
+//        System.out.println("---" + tableName + "中的数据如下：");
+//        System.out.println(tableData);
+//        System.out.println("---当前线程： " + Thread.currentThread().getName());
+        Integer result = betaDBService.writeDataByTableName(tableName, tableData);
+>>>>>>> 695e34fb94f9b597a15e33ec8300fc8d2043aa2f
         return result;
     }
 
