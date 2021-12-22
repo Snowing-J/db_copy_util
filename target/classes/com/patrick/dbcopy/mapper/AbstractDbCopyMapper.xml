@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.patrick.dbcopy.mapper.AbstractDBCopyMapper">
+
+    <select id="selectDatabase" resultType="java.lang.String">
+        select DATABASE()
+    </select>
+    <select id="selectAllTablesName" resultType="java.lang.String">
+        select DISTINCT TABLE_NAME from information_schema.COLUMNS where TABLE_SCHEMA = (select DATABASE())
+    </select>
+    <select id="selectDataByTableName" resultType="java.util.Map" parameterType="java.lang.String">
+        select * from ${tableName}
+    </select>
+    <insert id="insertByMap">
+        insert into ${tableName}
+        (
+        <foreach collection="map" item="value1" index="key1" separator=",">
+            `${key1}`
+        </foreach>
+        )
+        values
+        (
+        <foreach collection="map" item="value2" index="key2" separator=",">
+            #{value2}
+        </foreach>
+        )
+    </insert>
+</mapper>

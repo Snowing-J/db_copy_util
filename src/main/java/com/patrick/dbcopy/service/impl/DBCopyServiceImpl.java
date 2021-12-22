@@ -67,57 +67,15 @@ public class DBCopyServiceImpl implements DBCopyService {
         return "ok";
     }
 
-<<<<<<< HEAD
     @Override
     public Integer copyTable(String tableName) throws Exception{
         List<Map<String, Object>> tableData = readDBService.readDataByTableName(tableName);
         System.out.println("---" + tableName + "中的数据如下：");
         System.out.println(tableData);
         Integer result = writeDBService.writeDataByTableName(tableName, tableData);
-=======
-    private Integer copyTable(String tableName) throws Exception{
-        List<Map<String, Object>> tableData = onLineDBService.readDataByTableName(tableName);
-//        System.out.println("---当前线程： " + Thread.currentThread().getName());
-//        System.out.println("---" + tableName + "中的数据如下：");
-//        System.out.println(tableData);
-//        System.out.println("---当前线程： " + Thread.currentThread().getName());
-        Integer result = betaDBService.writeDataByTableName(tableName, tableData);
->>>>>>> 695e34fb94f9b597a15e33ec8300fc8d2043aa2f
+
         return result;
     }
 
-//
-//    // 数据库原有事务会导致数据库切换不成功，需要新开一个事务
-//    // 具体可以参考 https://baijiahao.baidu.com/s?id=1685490934094994913&wfr=spider&for=pc
-//    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
-//    @DS("mysql_writesource")
-//    @Override
-//    public Integer writeDataByTableName(String tableName, List<Map<String, Object>> tableData) throws Exception {
-//        String writeDBName = abstractDBCopyMapper.selectDatabase();
-//        if (writeSourceName.compareTo(writeDBName) != 0){
-//            System.out.println("writeDBName： " + writeDBName + "，  writeSourceName： " + writeSourceName);
-//            throw new Exception("---failed change datasource to write source---");
-//        }
-//        Integer result = -1;
-//        System.out.println("--数据库一致，开始向" + writeDBName + "." + tableName +"中写入数据！---");
-//
-//        for (Map map : tableData){
-//            result = abstractDBCopyMapper.insertByMap(tableName, map);
-//        }
-//        System.out.println("---数据写入成功！");
-//        return result;
-//    }
 
-//    /**
-//     * 读取tableName中的数据并返回
-//     * @param tableName
-//     * @return
-//     */
-//    @DS("mysql_readsource")
-//    @Transactional(propagation = Propagation.NOT_SUPPORTED)
-//    @Override
-//    public List<Map<String, Object>> readDataByTableName(String tableName) {
-//        System.out.println("--开始读取 tableName：%s 中的数据" + tableName);
-//        return abstractDBCopyMapper.selectDataByTableName(tableName);
-//    }
 }
