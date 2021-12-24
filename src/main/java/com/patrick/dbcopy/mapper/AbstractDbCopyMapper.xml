@@ -25,4 +25,9 @@
         </foreach>
         )
     </insert>
+
+<!--    向B库中同步A库中表名为tableName的表结构-->
+    <update id="copyStruct">
+        CREATE TABLE IF NOT EXISTS `${B}`.${tableName} (LIKE `${A}`.${tableName});
+    </update>
 </mapper>

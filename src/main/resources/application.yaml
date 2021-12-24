@@ -24,32 +24,33 @@ spring:
         max-pool-prepared-statement-per-connection-size: -1
       datasource:
         mysql_master:
-#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
-          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+#          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-#          password: 123456Mysql
-          password: tiger
+          password: 123456Mysql
+#          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_stat:
-#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
-          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+#          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-#          password: 123456Mysql
-          password: tiger
+          password: 123456Mysql
+#          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_readsource:
-#          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
-          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3306/online_db?serverTimezone=UTC&useSSL=false
+#          url: jdbc:mysql://localhost:3307/online_db?serverTimezone=UTC&useSSL=false
           username: root
-#          password: 123456Mysql
-          password: tiger
+          password: 123456Mysql
+#          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
         mysql_writesource:
 #          url: jdbc:mysql://localhost:3306/beta_db?serverTimezone=UTC&useSSL=false
-          url: jdbc:mysql://localhost:3307/beta_db?serverTimezone=UTC&useSSL=false
+          url: jdbc:mysql://localhost:3306/ant?serverTimezone=UTC&useSSL=false
+#          url: jdbc:mysql://localhost:3307/beta_db?serverTimezone=UTC&useSSL=false
           username: root
-#          password: 123456Mysql
-          password: tiger
+          password: 123456Mysql
+#          password: tiger
           driver-class-name: com.mysql.cj.jdbc.Driver
 
   # profiles: 配置环境，生产or开发or测试
@@ -66,5 +67,6 @@ logging:
         mapper: debug
 DbCopyVerifyCfg:
   read-source-name: online_db #生产环境DB
-  write-source-name: beta_db #预发环境DB
+#  write-source-name: beta_db #预发环境DB
+  write-source-name: ant #测试环境
   managers: root,user,admin #设置可以使用此工具的角色
