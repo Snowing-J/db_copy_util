@@ -58,8 +58,10 @@ public class DBCopyServiceImpl implements DBCopyService {
                 } catch (Exception e) {
 //                    log.error("abstractCopy:{}Error",tableName,e);
                 } finally {
+                    // TODO:返回值问题
                     affectedLines.put(tableName,affectedLine);
                     countDownLatch.countDown();
+                    System.out.println("-----affectedLines: " + affectedLines);
                 }
             });
         }

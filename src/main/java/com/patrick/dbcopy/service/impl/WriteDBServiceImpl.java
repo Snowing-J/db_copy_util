@@ -30,17 +30,20 @@ public class WriteDBServiceImpl implements WriteDBService {
     @Override
     public Integer writeDataByTableName(String tableName, List<Map<String, Object>> tableData) throws Exception {
         String writeDBName = abstractDBCopyMapper.selectDatabase();
-        if (writeSourceName.compareTo(writeDBName) != 0){
-            System.out.println("writeDBName： " + writeDBName + "，  writeSourceName： " + writeSourceName);
+        List<String> writeTableName = abstractDBCopyMapper.selectAllTablesName();
+
+        if (writeSourceName.compareTo(writeDBName) != 0 || !writeTableName.contains(tableName) ){
+//            System.out.println("writeDBName： " + writeDBName + "，  writeSourceName： " + writeSourceName);
+//            System.out.println("--------writeDBName"+ writeTableName);
             throw new Exception("---failed change datasource to write source---");
         }
         Integer result = -1;
-        System.out.println("--数据库一致，开始向" + writeDBName + "." + tableName +"中写入数据！---");
+//        System.out.println("--数据库一致，开始向" + writeDBName + "." + tableName +"中写入数据！---");
 
         for (Map map : tableData){
             result = abstractDBCopyMapper.insertByMap(tableName, map);
         }
-        System.out.println("---数据写入成功！");
+//        System.out.println("---数据写入成功！");
         return result;
     }
 }
