@@ -2,6 +2,13 @@
 ```
 这是一个可以完成跨库数据同步的基础工具，可广泛用于数据库的分表优化。
 ```
+#功能
+1.能完成跨库同步表内所有数据，保证数据不丢失；
+  a.copyAllTables(@Param("user") String user):同步数据库中的所有表数据
+  b.copyTable(@Param("user") String user, @Param("tableName") String tableName)：同步指定表中的数据
+2.能实现跨库同步表结构
+  a.copyAllTableStruct(@Param("user") String user):同步数据库中所有表的表结构
+  b.copyTableStruct():同步数据库中指定表的结构
 #Notes
 
 ##数据库方面
